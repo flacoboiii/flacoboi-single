@@ -30,6 +30,14 @@ window.addEventListener("load", () => {
 window.addEventListener("scroll", () => {
   targetScroll = window.scrollY;
 
+const scrollIndicator = document.querySelector(".scroll-indicator");
+
+if(window.scrollY > 50){
+
+scrollIndicator.style.opacity = "0";
+
+}
+
   // Quitar animación idle del fantasma al hacer scroll
   if (window.scrollY > 5) {
     ghost.classList.remove("idle");
@@ -241,3 +249,33 @@ function randomPulse(){
 }
 
 randomPulse();
+
+/* ========================= */
+/* COUNTDOWN LANZAMIENTO */
+/* ========================= */
+
+const releaseDate = new Date("2026-03-11T20:00:00").getTime(); 
+// CAMBIA ESTA FECHA POR TU RELEASE
+
+const countdownEl = document.getElementById("countdownTimer");
+
+function updateCountdown() {
+
+const now = new Date().getTime();
+const distance = releaseDate - now;
+
+if(distance < 0){
+countdownEl.innerHTML = "OUT NOW";
+return;
+}
+
+const days = Math.floor(distance / (1000*60*60*24));
+const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+
+countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m`;
+
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
