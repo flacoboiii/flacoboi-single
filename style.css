@@ -204,6 +204,7 @@ section {
   height: 100%;
   object-fit: cover; /* mantiene proporción y llena toda la sección */
   z-index: 0; /* detrás de todo el contenido */
+  pointer-events:none;
 }
 
 .cta > *:not(.cta-video) {
@@ -248,3 +249,116 @@ section {
   z-index: 1; /* detrás del fantasma y textos */
 }
 
+/* ========================= */
+/* SCROLL INDICATOR */
+/* ========================= */
+
+.scroll-indicator{
+position:absolute;
+bottom:60px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+opacity:0.8;
+pointer-events:none;
+}
+
+.scroll-text{
+
+font-size:12px;
+letter-spacing:2px;
+color:#f4c70f;
+
+text-shadow:
+0 0 5px rgba(244,199,15,0.6),
+0 0 10px rgba(244,199,15,0.4);
+
+}
+
+/* icono estilo minimal */
+
+.scroll-icon{
+
+width:18px;
+height:28px;
+border:2px solid #f4c70f;
+border-radius:12px;
+position:relative;
+
+}
+
+/* puntito dentro */
+
+.scroll-icon::before{
+
+content:"";
+width:4px;
+height:4px;
+background:#f4c70f;
+
+border-radius:50%;
+
+position:absolute;
+left:50%;
+top:6px;
+
+transform:translateX(-50%);
+
+animation:scrollMove 1.8s infinite;
+
+}
+
+/* animación */
+
+@keyframes scrollMove{
+
+0%{
+opacity:0;
+transform:translate(-50%,0);
+}
+
+40%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+transform:translate(-50%,10px);
+}
+
+}
+
+/* ========================= */
+/* MOBILE FIX */
+/* ========================= */
+
+@media screen and (max-width:768px){
+
+.song-logo{
+
+width:85%;
+max-width:420px;
+
+}
+
+.release-btn,
+.yt-btn{
+
+font-size:22px;
+padding:18px 32px;
+
+width:85%;
+max-width:360px;
+
+}
+
+.countdown{
+
+font-size:22px;
+
+}
+
+}
